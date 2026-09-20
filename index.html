@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار منشور Instagram</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,.96);
+      border-radius: 25px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    }
+
+    .logo {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 5px 0 10px;
+      color: #222;
+    }
+
+    .description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .counter {
+      font-size: 42px;
+      font-weight: bold;
+      color: #d62976;
+      margin: 15px 0;
+    }
+
+    .label {
+      color: #777;
+      font-size: 14px;
+    }
+button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(90deg,#833ab4,#fd1d1d);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+    }
+
+    .reset {
+      background: #222;
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 12px;
+    }
+
+    .info {
+      margin-top: 20px;
+      padding: 14px;
+      background: #f5f5f5;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #198754;
+      min-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="logo">📸</div>
+
+    <h1>اختبار منشور Instagram</h1>
+
+    <div class="description">
+      اضغط على الزر لفتح المنشور وتسجيل عملية الضغط
+      داخل صفحة الاختبار.
+    </div>
+
+    <div class="label">عدد النقرات المسجلة على هذا الجهاز</div>
+
+    <div class="counter" id="counter">0</div>
+
+    <button onclick="openInstagram()">
+      📱 فتح منشور Instagram
+    </button>
+
+    <button class="reset" onclick="resetCounter()">
+      إعادة تعيين العداد
+    </button>
+
+    <div class="status" id="status"></div>
+
+    <div class="info">
+      ⚠️ هذا الاختبار لا يرسل مشاهدات وهمية إلى Instagram.
+      العداد يحسب فقط عمليات الضغط على زر فتح المنشور
+      في صفحة الاختبار الحالية.
+</div>
+
+  </div>
+
+<script>
+
+  // رابط منشور Instagram الذي أرسلته
+  const instagramURL =
+    "https://www.instagram.com/p/DYr4BaTtIk-/?stkn=eTVxN2M4MHoxOGk3";
+
+  // قراءة العدد المحفوظ
+  let clicks = Number(localStorage.getItem("instagram_test_clicks")) || 0;
+
+  // عرض العدد عند فتح الصفحة
+  updateCounter();
+
+  function updateCounter() {
+    document.getElementById("counter").textContent =
+      clicks.toLocaleString("ar-MA");
+  }
+
+  function openInstagram() {
+
+    // تسجيل ضغطة جديدة
+    clicks++;
+
+    // حفظ العدد على الجهاز
+    localStorage.setItem(
+      "instagram_test_clicks",
+      clicks
+    );
+
+    updateCounter();
+
+    document.getElementById("status").textContent =
+      "تم تسجيل الضغط ✓ جاري فتح Instagram...";
+
+    // فتح المنشور
+    window.open(
+      instagramURL,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+
+  function resetCounter() {
+
+    clicks = 0;
+
+    localStorage.removeItem(
+      "instagram_test_clicks"
+    );
+
+    updateCounter();
+
+    document.getElementById("status").textContent =
+      "تمت إعادة تعيين العداد ✓";
+  }
+
+</script>
+
+</body>
+</html>
+
