@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZZI AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .chat {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      min-height: 400px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    #messages {
+      min-height: 300px;
+    }
+
+    .message {
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      max-width: 85%;
+    }
+
+    .user {
+      background: #111;
+      color: white;
+      margin-right: auto;
+    }
+
+    .ai {
+      background: #eee;
+      margin-left: auto;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    input {
+      flex: 1;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      border: 0;
+      background: #111;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  🤖 AZZI AI
+</header>
+
+<div class="container">
+  <div class="chat">
+
+    <div id="messages">
+      <div class="message ai">
+        مرحباً! أنا AZZI AI 🤖<br>
+        أخبرني بما تريد.
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input
+        id="userInput"
+        type="text"
+        placeholder="اكتب أمرك هنا..."
+      >
+
+      <button onclick="sendMessage()">
+        إرسال
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function sendMessage() {
+
+  const input = document.getElementById("userInput");
+  const messages = document.getElementById("messages");
+
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  messages.innerHTML += `
+    <div class="message user">
+      ${text}
+    </div>
+  `;
+
+  input.value = "";
+
+  setTimeout(() => {
+
+    messages.innerHTML += `
+      <div class="message ai">
+        وصلتني رسالتك ✅<br>
+        أنا حالياً في المرحلة الأولى، وسنربطني لاحقاً بعقل ذكاء اصطناعي حقيقي.
+      </div>
+    `;
+
+  }, 500);
+}
+</script>
+
+</body>
